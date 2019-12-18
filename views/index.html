@@ -214,97 +214,257 @@ pre {
 </head>
 <body>
 
-<section class='container'>
-          <hgroup>
-            <h1>Welcome to your Node.js application on OpenShift</h1>
-          </hgroup>
-
-
-        <div class="row">
-          <section class='col-xs-12 col-sm-6 col-md-6'>
-            <section>
-              <h2>How to use this example application</h2>
-                <p>For instructions on how to use this application with OpenShift, start by reading the <a href="http://docs.okd.io/latest/dev_guide/templates.html#using-the-quickstart-templates">Developer Guide</a>.</p>
-
-              <h2>Deploying code changes</h2>
-                <p>
-                  The source code for this application is available to be forked from the <a href="https://www.github.com/sclorg/nodejs-ex">OpenShift GitHub repository</a>.
-                  You can configure a webhook in your repository to make OpenShift automatically start a build whenever you push your code:
-                </p>
-
-<ol>
-  <li>From the Web Console homepage, navigate to your project</li>
-  <li>Click on Browse &gt; Builds</li>
-  <li>Click the link with your BuildConfig name</li>
-  <li>Click the Configuration tab</li>
-  <li>Click the "Copy to clipboard" icon to the right of the "GitHub webhook URL" field</li>
-  <li>Navigate to your repository on GitHub and click on repository settings &gt; webhooks &gt; Add webhook</li>
-  <li>Paste your webhook URL provided by OpenShift in the "Payload URL" field</li>
-  <li>Change the "Content type" to 'application/json'</li>
-  <li>Leave the defaults for the remaining fields &mdash; that's it!</li>
-</ol>
-<p>After you save your webhook, if you refresh your settings page you can see the status of the ping that Github sent to OpenShift to verify it can reach the server.</p>
-<p>Note: adding a webhook requires your OpenShift server to be reachable from GitHub.</p>
-
-                <h3>Working in your local Git repository</h3>
-                <p>If you forked the application from the OpenShift GitHub example, you'll need to manually clone the repository to your local system. Copy the application's source code Git URL and then run:</p>
-
-<pre>$ git clone &lt;git_url&gt; &lt;directory_to_create&gt;
-
-# Within your project directory
-# Commit your changes and push to OpenShift
-
-$ git commit -a -m 'Some commit message'
-$ git push</pre>
-
-<p>After pushing changes, you'll need to manually trigger a build if you did not setup a webhook as described above.</p>
-
-            </section>
-
-          </section>
-          <section class="col-xs-12 col-sm-6 col-md-6">
-
-                <h2>Managing your application</h2>
-
-                <p>Documentation on how to manage your application from the Web Console or Command Line is available at the <a href="http://docs.okd.io/latest/dev_guide/overview.html">Developer Guide</a>.</p>
-
-                <h3>Web Console</h3>
-                <p>You can use the Web Console to view the state of your application components and launch new builds.</p>
-
-                <h3>Command Line</h3>
-                <p>With the <a href="http://docs.okd.io/latest/cli_reference/overview.html">OpenShift command line interface</a> (CLI), you can create applications and manage projects from a terminal.</p>
-
-                <h2>Development Resources</h2>
-                  <ul>
-                    <li><a href="http://docs.okd.io/latest/welcome/index.html">OpenShift Documentation</a></li>
-                    <li><a href="https://github.com/openshift/origin">Openshift Origin GitHub</a></li>
-                    <li><a href="https://github.com/openshift/source-to-image">Source To Image GitHub</a></li>
-                    <li><a href="http://docs.okd.io/latest/using_images/s2i_images/nodejs.html">Getting Started with Node.js on OpenShift</a></li>
-                    <li><a href="http://stackoverflow.com/questions/tagged/openshift">Stack Overflow questions for OpenShift</a></li>
-                    <li><a href="http://git-scm.com/documentation">Git documentation</a></li>
-                  </ul>
-
-                <h2>Request information</h2>
-                <p>Page view count:
-                <% if (pageCountMessage) { %>
-                   <span class="code" id="count-value"><%=pageCountMessage%></span>
-                   </p>
-                    <div class="code"><h3>DB Connection Info:</h3>
-                      <table style='margin-left: 20px'>
-                          <tr><td>Type:</td><td><%= dbInfo.type %></td></tr>
-                          <tr><td>URL:</td><td><%= dbInfo.url %></td></tr>
-                      </table>
-                    </div>
-                <% } else { %>
-                   <span class="code" id="count-value">No database configured</span>
-                   </p>
-                <%} %>
-          </section>
-        </div>
-
-        <footer>
-          <div class="logo"><a href="https://www.openshift.com/"></a></div>
-        </footer>
-</section>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  
+  </head>
+  
+  <body>
+      <div style="height:60px;" *ngIf="errorOccured">
+          <span>
+              <p class="alert alert-danger">{{err}}</p>
+          </span>
+      </div>
+      <div class="content-section implementation ui-fluid">
+          <p-table #dt [columns]="cols" [value]="fobArr" [scrollable]="true" selectionMode="single"
+              [(selection)]="selectedFob" (onRowSelect)="onRowSelect($event)" scrollHeight="300px" [paginator]="true"
+              [rows]="5">
+              <ng-template pTemplate="header" let-columns>
+                  <tr>
+                      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+  
+                      </th>
+                  </tr>
+                  <tr>
+                      <th *ngFor="let col of columns ;" [ngSwitch]="col.field" >
+                          <!--<input [style]="{overflow:'hidden'}" *ngSwitchCase="'id'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->
+                          <input *ngSwitchCase="'um'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'it_mgr'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'lanid'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input [style]="{width:'10px'}" *ngSwitchCase="'fname'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'lname'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'fobid'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'vmname'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <p-dropdown *ngSwitchCase="'vmstat'" appendTo="body" [options]="status"
+                              placeholder="Select Status" [style]="{'width':'100%'}"
+                              (onChange)="dt.filter($event.value, col.field, 'equals')">
+                          </p-dropdown>
+                          <input *ngSwitchCase="'radlicense'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'sdate'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'edate'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'expdate'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <input *ngSwitchCase="'rsn'" pInputText type="text"
+                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                          <p-dropdown *ngSwitchCase="'stat'" appendTo="body" [options]="status" placeholder="Select"
+                              [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')">
+                          </p-dropdown>
+                      </th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr [pSelectableRow]="rowData">
+                      <td *ngFor="let col of columns">
+                          <span title={{rowData[col.field]}}
+                              *ngIf="col.header !== 'Fob Attachment'">{{rowData[col.field]}}</span>
+  
+                          <a title={{rowData[col.field]}} [routerLink]="" *ngIf="col.header === 'Fob Attachment'"
+                              (click)="downloadImg(rowData[col.field])">{{rowData[col.field]}}</a>
+                      </td>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="summary" let-rowData>
+                  <div class="ui-grid-col-12">
+                      <div class="ui-grid-col-1">
+                          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
+                              [disabled]="vrole || downloadxsl" label="Add"></button>
+                      </div>
+                      <p-button label="Download Excel" icon="fa fa-fw fa-download" style="float: right; margin-top: 0%"
+                          (click)="downloadExcel()" [disabled]="downloadxsl"></p-button>
+                  </div>
+              </ng-template>
+          </p-table>
+          <!--<p-button label="Click to download excel" styleClass="ui-button-info" (click)="download()"></p-button>-->
+      </div>
+  
+      <p-dialog header="Assest Details" [(visible)]="displayDialog" [draggable]="true" [autoZIndex]="true"
+          [responsive]="true" showEffect="fade" [modal]="true" [style]="{'background':'#f2f2f2'}" [width]="600">
+          <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+              <div class="ui-g ui-fluid" *ngIf="fob">
+                  <p>Please fill out Required Fields *</p>
+                  <!-- <div class="ui-g-12" *ngIf="errstatus"> -->
+                          <div class="ui-g-12" *ngIf="errorOccured">
+                          <span>
+                      <p class="alert alert-danger">{{err}}</p>
+                      </span>
+                  </div>
+                  <div class="ui-g-12">
+                      <div class="ui-g-2">
+                          <label for="lanid">*Lan ID</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <input pInputText id="lanid" name="lanid" [(ngModel)]="fob.lanid" #lanid="ngModel" 
+                          [disabled]="rscDisplaySelectedDialog" required />
+                          <div *ngIf="user">
+                              <span>
+                                  <p class="alert alert-danger">{{chkuser}}</p>
+                              </span>
+                          </div>
+                          <div *ngIf="!user && chkuser!==''">
+                              <span>
+                                  <p class="alert alert-success">{{chkuser}}</p>
+                              </span>
+                          </div>
+                      </div>
+                      <div class="ui-g-3">
+                          <p-button icon="fa fa-check" (click)="checkUser(fob.lanid)" label="Look Up" [hidden] ="rscDisplaySelectedDialog"></p-button>
+                      </div>
+                  </div>
+                  <!--<div class="ui-g">
+                      <div class="ui-g-2">
+                          <label for="fname">*First Name</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <input pInputText id="fname" name="fname" [(ngModel)]="fob.fname" #fname="ngModel"
+                              disabled="true" required />
+                      </div>
+                      <div class="ui-g-2">
+                          <label for="lname">*Last Name</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <input pInputText id="lname" name="lname" [(ngModel)]="fob.lname" #lname="ngModel"
+                              disabled="true" required />
+                      </div>
+                  </div>-->
+                  <div>
+                      <div class="ui-g-12">
+                          <p><b>VM Details</b></p>
+                          <hr>
+                          <div class="ui-g-2">
+                              <label for="vmname">VM Name</label>
+                          </div>
+                          <div class="ui-g-4">
+                              <p-dropdown id='vmname' name="vmname" [options]="vmitem" appendTo="body"
+                                  [(ngModel)]="fob.vmname" #vmname="ngModel" [disabled]="vmDisableDropdown" required></p-dropdown>
+                          </div>
+  
+                          <div class="ui-g-2">
+                              <label for="vmstat">VM Status</label>
+                          </div>
+                          <div class="ui-g-4">
+                              <p-dropdown id='vmstat' name="vmstat" [options]="status" appendTo="body"
+                                  [(ngModel)]="fob.vmstat" #vmstat="ngModel" required></p-dropdown>
+                          </div>
+                      </div>
+  
+                      <div class="ui-g-12">
+                          <p><b>RAD Details</b></p>
+                          <hr>
+                          <div class="ui-g-3">
+                              <label for="radlicense">RAD License</label>
+                          </div>
+                          <div class="ui-g-4">
+                              <!--<input pInputText id="radlicense" name="radlicense" [(ngModel)]="fob.radlicense"
+                                  #radlicense="ngModel" />-->
+                              <p-dropdown id='radlicense' name="radlicense" [options]="radlic" appendTo="body"
+                                  [(ngModel)]="fob.radlicense" #radlicense="ngModel" required></p-dropdown>
+                          </div>
+                      </div>
+                  </div>
+  
+                  <div class="ui-g-12">
+                      <p><b>FOB Details</b></p>
+                      <hr>
+                      <div class="ui-g-2">
+                          <label for="fobid">*FOB Id</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <p-dropdown id='fobid' name="fobid" [options]="fobitem" appendTo="body" [(ngModel)]="fob.fobid"
+                              #fobid="ngModel" [disabled]="fobidDisableDropdown" required></p-dropdown>
+                      </div>
+                      <!--<div class="ui-g-2">
+                          <label for="sdate">*Start Date</label>
+                      </div>
+                      <div class="ui-g-4">
+                         <p-calendar pInputText id="sdate" name="sdate" [defaultDate]="fob.sdate"
+                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.sdate" #sdate="ngModel" [showIcon]="true"
+                              appendTo="body" [style]="{'overflow': 'visible', 'z-index': '999'}" [disabled]="displayDialog" 
+                              required></p-calendar>
+                      </div>-->
+                  </div>
+                  <!-- <div class="ui-g-12">
+                      <div class="ui-g-2">
+                          <label for="expdate">End Date</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <p-calendar pInputText id="edate" name="edate" [defaultDate]="fob.edate"
+                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.edate" [disabled]="fob.stat == 'Inactive'"
+                              #edate="ngModel" [showIcon]="true" appendTo="body"
+                              [style]="{'overflow': 'visible', 'z-index': '999'}"></p-calendar>
+                      </div>-->
+  
+                  <!-- <div class="ui-g-2">
+                          <label for="expdate">*Exp Date</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <p-calendar pInputText id="expdate" name="expdate" [defaultDate]="fob.expdate"
+                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.expdate" #expdate="ngModel" [showIcon]="true"
+                              appendTo="body" [style]="{'overflow': 'visible', 'z-index': '999'}" 
+                              [disabled]="displayDialog" required></p-calendar>
+                      </div>
+                  </div>-->
+                  <div class="ui-g-12">
+                      <div class="ui-g-2">
+                          <label for="stat">Status</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <p-dropdown id='stat' name="stat" [options]="status" (onChange)="setStatus($event)"
+                              appendTo="body" [(ngModel)]="fob.stat" #stat="ngModel"></p-dropdown>
+                      </div>
+                      <div class="ui-g-2">
+                          <label for="rsn">Transfer Reason</label>
+                      </div>
+                      <div class="ui-g-4">
+                          <input pInputText id="rsn" name="rsn" [(ngModel)]="fob.rsn" #rsn="ngModel" />
+                      </div>
+                  </div>
+                  <div class="ui-g-12">
+                      <div class="ui-g-3">
+                          <label for="atchmnt">Fob Attachment</label>
+                      </div>
+                      <div class="ui-g-9" style="width: auto;">
+                          <input type="file" accept="image/*" id="atchmnt" name="atchmnt" (change)="onFileSelect($event)"
+                              [(ngModel)]="selectedFile" #atchmnt="ngModel" />
+                          <!--<p-fileUpload mode="basic" name="demo[]" url="C:\Users\ShubhiGarg\Documents" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>-->
+                      </div>
+                  </div>
+              </div>
+              <p-footer>
+                  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"
+                          [disabled]="!selectedFob"></button>
+                      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"
+                          [disabled]="f.form.pristine || f.form.invalid"></button>
+                  </div>
+              </p-footer>
+          </form>
+      </p-dialog>
+      <p-confirmDialog width="400"></p-confirmDialog>
+  </body>
+  
+  </html>
 </body>
 </html>
