@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Welcome to OpenShift</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="assets/resources/css/theme.css" />
 
 
 <style>
@@ -208,263 +211,136 @@ pre {
   overflow: auto;
   font-family: Menlo,Monaco,"Liberation Mono",Consolas,monospace !important;
 }
+table#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+table#t01 th {
+  background-color: black;
+  color: white;
+}
+.right-half {
+    margin-top: -139px;
+    position: absolute;
+    right: 20%;
+    width: 70%;
+    padding: 0.571em 0.857em;
+    border: 1px solid #c8c8c8;
+    background-color: #f4f4f4;
+    margin-right: -179px;
+    border-collapse: separate;
+  padding: 15px;
+  text-align: center;
+  outline: black;
+  }
+  td{
+      border: 1px solid black;
+  }
+
+  .left-half {
+    margin-top: 10px;
+    position: inherit;
+    left: 15%;
+    width: 20%;
+    background: #e6efee; 
+    border-radius: 10px;
+    
+  }
 
 </style>
 
 </head>
 <body>
+  <img _ngcontent-hyt-c1="" height="85%" src="HorizonLogo.png" height="60%" width="20%"> 
+  <p style="float:right "  >Welcome to Horizon Asset Management</p>
+  
+  <table class="left-half">
+      <tr>
+        <th> Onboard Resources</th>
+      </tr>
+      <tr>
+          <th>Asset Fob Details</th>
+        </tr>
+        <tr>
+            <th>Asset VM Details</th>
+          </tr>
+          <tr>
+              <th>UM Details</th>
+            </tr>
+            <tr>
+                <th>Resource Assets</th>
+              </tr>
+              <tr>
+                  <th>Asset History</th>
+                </tr>
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  
-  </head>
-  
-  <body>
-      <div style="height:60px;" *ngIf="errorOccured">
-          <span>
-              <p class="alert alert-danger">{{err}}</p>
-          </span>
-      </div>
-      <div class="content-section implementation ui-fluid">
-          <p-table #dt [columns]="cols" [value]="fobArr" [scrollable]="true" selectionMode="single"
-              [(selection)]="selectedFob" (onRowSelect)="onRowSelect($event)" scrollHeight="300px" [paginator]="true"
-              [rows]="5">
-              <ng-template pTemplate="header" let-columns>
-                  <tr>
-                      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                          {{col.header}}
-                          <p-sortIcon [field]="col.field"></p-sortIcon>
-  
-                      </th>
-                  </tr>
-                  <tr>
-                      <th *ngFor="let col of columns ;" [ngSwitch]="col.field" >
-                          <!--<input [style]="{overflow:'hidden'}" *ngSwitchCase="'id'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">-->
-                          <input *ngSwitchCase="'um'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'it_mgr'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'lanid'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input [style]="{width:'10px'}" *ngSwitchCase="'fname'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'lname'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'fobid'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'vmname'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <p-dropdown *ngSwitchCase="'vmstat'" appendTo="body" [options]="status"
-                              placeholder="Select Status" [style]="{'width':'100%'}"
-                              (onChange)="dt.filter($event.value, col.field, 'equals')">
-                          </p-dropdown>
-                          <input *ngSwitchCase="'radlicense'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'sdate'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'edate'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'expdate'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <input *ngSwitchCase="'rsn'" pInputText type="text"
-                              (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                          <p-dropdown *ngSwitchCase="'stat'" appendTo="body" [options]="status" placeholder="Select"
-                              [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')">
-                          </p-dropdown>
-                      </th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-columns="columns">
-                  <tr [pSelectableRow]="rowData">
-                      <td *ngFor="let col of columns">
-                          <span title={{rowData[col.field]}}
-                              *ngIf="col.header !== 'Fob Attachment'">{{rowData[col.field]}}</span>
-  
-                          <a title={{rowData[col.field]}} [routerLink]="" *ngIf="col.header === 'Fob Attachment'"
-                              (click)="downloadImg(rowData[col.field])">{{rowData[col.field]}}</a>
-                      </td>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="summary" let-rowData>
-                  <div class="ui-grid-col-12">
-                      <div class="ui-grid-col-1">
-                          <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
-                              [disabled]="vrole || downloadxsl" label="Add"></button>
-                      </div>
-                      <p-button label="Download Excel" icon="fa fa-fw fa-download" style="float: right; margin-top: 0%"
-                          (click)="downloadExcel()" [disabled]="downloadxsl"></p-button>
-                  </div>
-              </ng-template>
-          </p-table>
-          <!--<p-button label="Click to download excel" styleClass="ui-button-info" (click)="download()"></p-button>-->
-      </div>
-  
-      <p-dialog header="Assest Details" [(visible)]="displayDialog" [draggable]="true" [autoZIndex]="true"
-          [responsive]="true" showEffect="fade" [modal]="true" [style]="{'background':'#f2f2f2'}" [width]="600">
-          <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
-              <div class="ui-g ui-fluid" *ngIf="fob">
-                  <p>Please fill out Required Fields *</p>
-                  <!-- <div class="ui-g-12" *ngIf="errstatus"> -->
-                          <div class="ui-g-12" *ngIf="errorOccured">
-                          <span>
-                      <p class="alert alert-danger">{{err}}</p>
-                      </span>
-                  </div>
-                  <div class="ui-g-12">
-                      <div class="ui-g-2">
-                          <label for="lanid">*Lan ID</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <input pInputText id="lanid" name="lanid" [(ngModel)]="fob.lanid" #lanid="ngModel" 
-                          [disabled]="rscDisplaySelectedDialog" required />
-                          <div *ngIf="user">
-                              <span>
-                                  <p class="alert alert-danger">{{chkuser}}</p>
-                              </span>
-                          </div>
-                          <div *ngIf="!user && chkuser!==''">
-                              <span>
-                                  <p class="alert alert-success">{{chkuser}}</p>
-                              </span>
-                          </div>
-                      </div>
-                      <div class="ui-g-3">
-                          <p-button icon="fa fa-check" (click)="checkUser(fob.lanid)" label="Look Up" [hidden] ="rscDisplaySelectedDialog"></p-button>
-                      </div>
-                  </div>
-                  <!--<div class="ui-g">
-                      <div class="ui-g-2">
-                          <label for="fname">*First Name</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <input pInputText id="fname" name="fname" [(ngModel)]="fob.fname" #fname="ngModel"
-                              disabled="true" required />
-                      </div>
-                      <div class="ui-g-2">
-                          <label for="lname">*Last Name</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <input pInputText id="lname" name="lname" [(ngModel)]="fob.lname" #lname="ngModel"
-                              disabled="true" required />
-                      </div>
-                  </div>-->
-                  <div>
-                      <div class="ui-g-12">
-                          <p><b>VM Details</b></p>
-                          <hr>
-                          <div class="ui-g-2">
-                              <label for="vmname">VM Name</label>
-                          </div>
-                          <div class="ui-g-4">
-                              <p-dropdown id='vmname' name="vmname" [options]="vmitem" appendTo="body"
-                                  [(ngModel)]="fob.vmname" #vmname="ngModel" [disabled]="vmDisableDropdown" required></p-dropdown>
-                          </div>
-  
-                          <div class="ui-g-2">
-                              <label for="vmstat">VM Status</label>
-                          </div>
-                          <div class="ui-g-4">
-                              <p-dropdown id='vmstat' name="vmstat" [options]="status" appendTo="body"
-                                  [(ngModel)]="fob.vmstat" #vmstat="ngModel" required></p-dropdown>
-                          </div>
-                      </div>
-  
-                      <div class="ui-g-12">
-                          <p><b>RAD Details</b></p>
-                          <hr>
-                          <div class="ui-g-3">
-                              <label for="radlicense">RAD License</label>
-                          </div>
-                          <div class="ui-g-4">
-                              <!--<input pInputText id="radlicense" name="radlicense" [(ngModel)]="fob.radlicense"
-                                  #radlicense="ngModel" />-->
-                              <p-dropdown id='radlicense' name="radlicense" [options]="radlic" appendTo="body"
-                                  [(ngModel)]="fob.radlicense" #radlicense="ngModel" required></p-dropdown>
-                          </div>
-                      </div>
-                  </div>
-  
-                  <div class="ui-g-12">
-                      <p><b>FOB Details</b></p>
-                      <hr>
-                      <div class="ui-g-2">
-                          <label for="fobid">*FOB Id</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <p-dropdown id='fobid' name="fobid" [options]="fobitem" appendTo="body" [(ngModel)]="fob.fobid"
-                              #fobid="ngModel" [disabled]="fobidDisableDropdown" required></p-dropdown>
-                      </div>
-                      <!--<div class="ui-g-2">
-                          <label for="sdate">*Start Date</label>
-                      </div>
-                      <div class="ui-g-4">
-                         <p-calendar pInputText id="sdate" name="sdate" [defaultDate]="fob.sdate"
-                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.sdate" #sdate="ngModel" [showIcon]="true"
-                              appendTo="body" [style]="{'overflow': 'visible', 'z-index': '999'}" [disabled]="displayDialog" 
-                              required></p-calendar>
-                      </div>-->
-                  </div>
-                  <!-- <div class="ui-g-12">
-                      <div class="ui-g-2">
-                          <label for="expdate">End Date</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <p-calendar pInputText id="edate" name="edate" [defaultDate]="fob.edate"
-                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.edate" [disabled]="fob.stat == 'Inactive'"
-                              #edate="ngModel" [showIcon]="true" appendTo="body"
-                              [style]="{'overflow': 'visible', 'z-index': '999'}"></p-calendar>
-                      </div>-->
-  
-                  <!-- <div class="ui-g-2">
-                          <label for="expdate">*Exp Date</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <p-calendar pInputText id="expdate" name="expdate" [defaultDate]="fob.expdate"
-                              [dateFormat]="'yy-mm-dd'" [(ngModel)]="fob.expdate" #expdate="ngModel" [showIcon]="true"
-                              appendTo="body" [style]="{'overflow': 'visible', 'z-index': '999'}" 
-                              [disabled]="displayDialog" required></p-calendar>
-                      </div>
-                  </div>-->
-                  <div class="ui-g-12">
-                      <div class="ui-g-2">
-                          <label for="stat">Status</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <p-dropdown id='stat' name="stat" [options]="status" (onChange)="setStatus($event)"
-                              appendTo="body" [(ngModel)]="fob.stat" #stat="ngModel"></p-dropdown>
-                      </div>
-                      <div class="ui-g-2">
-                          <label for="rsn">Transfer Reason</label>
-                      </div>
-                      <div class="ui-g-4">
-                          <input pInputText id="rsn" name="rsn" [(ngModel)]="fob.rsn" #rsn="ngModel" />
-                      </div>
-                  </div>
-                  <div class="ui-g-12">
-                      <div class="ui-g-3">
-                          <label for="atchmnt">Fob Attachment</label>
-                      </div>
-                      <div class="ui-g-9" style="width: auto;">
-                          <input type="file" accept="image/*" id="atchmnt" name="atchmnt" (change)="onFileSelect($event)"
-                              [(ngModel)]="selectedFile" #atchmnt="ngModel" />
-                          <!--<p-fileUpload mode="basic" name="demo[]" url="C:\Users\ShubhiGarg\Documents" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>-->
-                      </div>
-                  </div>
-              </div>
-              <p-footer>
-                  <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                      <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"
-                          [disabled]="!selectedFob"></button>
-                      <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"
-                          [disabled]="f.form.pristine || f.form.invalid"></button>
-                  </div>
-              </p-footer>
-          </form>
-      </p-dialog>
-      <p-confirmDialog width="400"></p-confirmDialog>
-  </body>
-  
-  </html>
+               
+    </table>
+   
+    
+    <table class="right-half">
+        <tr>
+          <th>UM</th>
+          <th>IT Manager</th>
+          <th>Lan ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>VM Name</th>
+          <th>VM Status</th>
+          <th>RAD License</th>
+          <th>FOB ID</th>
+          <th>FOB End Date</th>
+          <th>FOB Status</th>
+          <th>FOB Attachment</th>
+        </tr>
+        <tr>
+            <td>EJA</td>
+            <td>Keyur</td>
+            <td>kp</td>
+            <td>keyur</td>
+            <td>Patil</td>
+            <td>ARCMVM297</td>
+            <td>Active</td>
+            <td>Y</td>
+            <td>1123456</td>
+            <td>12/12/2020</td>
+            <td>Active</td>
+            <td></td>
+          </tr>
+          <tr>
+              <td>EJA</td>
+              <td>Kumar</td>
+              <td>kl</td>
+              <td>Kumar</td>
+              <td>love</td>
+              <td>ARCMVM299</td>
+              <td>Active</td>
+              <td>Y</td>
+              <td>89726</td>
+              <td>12/12/2021</td>
+              <td>Active</td>
+              <td></td>
+            </tr>
+            <tr>
+                <td>EJA</td>
+                <td>Sarfaraz</td>
+                <td>sp</td>
+                <td>Sarfaraz</td>
+                <td>Patdan</td>
+                <td>ARCMVM279</td>
+                <td>Active</td>
+                <td>Y</td>
+                <td>56789</td>
+                <td>01/11/2021</td>
+                <td>Active</td>
+                <td></td>
+              </tr>
+      
+      </table>
+
+
+ 
 </body>
 </html>
