@@ -120,11 +120,11 @@ initDb(function(err){
 });
 
 app.get('/hello',function(req,res){
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-   
+  
   // Send the response body as "Hello World"
-  res.end('Hello World\n');
-  res.render('index.html', { message : res});
+  res.send('Hello World\n');
+  res.render(index.html, { message : "success"});
+  console.log(message);
 
  
 })
