@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Welcome to OpenShift</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 
 <style>
 
@@ -63,7 +65,7 @@
  tr,td {
  line-height: 30px;
  }
-.message {
+.messagess {
   float: right;
     margin-right: 24%;
     margin-top: 3%;
@@ -82,7 +84,7 @@
   <h4 class="icon" > <img src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/iconMember.gif"> login</h4>
   
   
-  <div class="message">Welcome to Horizon Asset Management</div>
+  <div class="messagess">Welcome to Horizon Asset Management</div>
 
   
   <table class="left-half">
@@ -124,9 +126,50 @@
           <th>FOB Status</th>
           <th>FOB Attachment</th>
         </tr>
+        <tr>
+            <td><%=message.dbData[0].UM %></td>
+            <td><%=message.dbData[0].IT_Manager %></td>
+            <td><%=message.dbData[0].Lan_ID %></td>
+            <td><%=message.dbData[0].First_Name%></td>
+            <td><%=message.dbData[0].Last_Name %></td>
+            <td><%=message.dbData[0].VM_Name%></td>
+            <td><%=message.dbData[0].VM_Status %></td>
+            <td><%=message.dbData[0].RAD_License %></td>
+            <td><%=message.dbData[0].FOB_Id %></td>
+            <td><%=message.dbData[0].FOB_End_Date %></td>
+            <td><%=message.dbData[0].FOB_Status %></td>
+            <td><%=message.dbData[0].FOB_Attachment%></td>
+          </tr>
+          <tr>
+              <td><%=message.dbData[1].UM %></td>
+              <td><%=message.dbData[1].IT_Manager %></td>
+              <td><%=message.dbData[1].Lan_ID %></td>
+              <td><%=message.dbData[1].First_Name%></td>
+              <td><%=message.dbData[1].Last_Name %></td>
+              <td><%=message.dbData[1].VM_Name%></td>
+              <td><%=message.dbData[1].VM_Status %></td>
+              <td><%=message.dbData[1].RAD_License %></td>
+              <td><%=message.dbData[1].FOB_Id %></td>
+              <td><%=message.dbData[1].FOB_End_Date %></td>
+              <td><%=message.dbData[1].FOB_Status %></td>
+              <td><%=message.dbData[1].FOB_Attachment%></td>
+            </tr>
+            <tr>
+                <td><%=message.dbData[2].UM %></td>
+                <td><%=message.dbData[2].IT_Manager %></td>
+                <td><%=message.dbData[2].Lan_ID %></td>
+                <td><%=message.dbData[2].First_Name%></td>
+                <td><%=message.dbData[2].Last_Name %></td>
+                <td><%=message.dbData[2].VM_Name%></td>
+                <td><%=message.dbData[2].VM_Status %></td>
+                <td><%=message.dbData[2].RAD_License %></td>
+                <td><%=message.dbData[2].FOB_Id %></td>
+                <td><%=message.dbData[2].FOB_End_Date %></td>
+                <td><%=message.dbData[2].FOB_Status %></td>
+                <td><%=message.dbData[2].FOB_Attachment%></td>
+              </tr>
       
       </table>
-
 
  
 </body>

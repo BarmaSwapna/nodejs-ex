@@ -131,7 +131,7 @@ app.get('/hello',function(req,res){
     if (!err) {
       var sringifieddata=JSON.parse(resp);
        
-        res.render('index.html', { message :sringifieddata});
+        res.render('load.html', { message :sringifieddata});
 
     } else {
         console.log(err);
@@ -139,8 +139,12 @@ app.get('/hello',function(req,res){
     });
   
 
- 
+  
 })
+
+
+
+
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
