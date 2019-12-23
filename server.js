@@ -144,8 +144,7 @@ app.get('/hello',function(req,res){
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
       var sringifieddata=JSON.parse(resp);
-        //console.log('received data: ' + resp.dbData[0].First_Name);
-        //sringifieddata.dbData[0].First_Name
+       
         res.render('index.html', { message :sringifieddata});
 
     } else {
