@@ -6,7 +6,6 @@
   <title>Welcome to OpenShift</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" type="text/css" href="assets/resources/css/theme.css" />
 
 
 <style>
@@ -81,7 +80,7 @@
 
 </head>
 <body>
-  <img _ngcontent-hyt-c1="" height="85%" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/HorizonLogo.png" height="60%" width="20%"> 
+    <img _ngcontent-hyt-c1="" height="85%" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/HorizonLogo.png" height="60%" width="20%"> 
   <h4 class="icon" > <img src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/iconMember.gif"> login</h4>
   
   
@@ -128,51 +127,89 @@
           <th>FOB Attachment</th>
         </tr>
         <tr>
-            <td>EJA</td>
-            <td>Keyur</td>
-            <td>kp</td>
-            <td>keyur</td>
-            <td>Patil</td>
-            <td>ARCMVM297</td>
-            <td>Active</td>
-            <td>Y</td>
-            <td>1123456</td>
-            <td>12/12/2020</td>
-            <td>Active</td>
-            <td></td>
+            <td><%=message.dbData[0].UM %></td>
+            <td><%=message.dbData[0].IT_Manager %></td>
+            <td><%=message.dbData[0].Lan_ID %></td>
+            <td><%=message.dbData[0].First_Name%></td>
+            <td><%=message.dbData[0].Last_Name %></td>
+            <td><%=message.dbData[0].VM_Name%></td>
+            <td><%=message.dbData[0].VM_Status %></td>
+            <td><%=message.dbData[0].RAD_License %></td>
+            <td><%=message.dbData[0].FOB_Id %></td>
+            <td><%=message.dbData[0].FOB_End_Date %></td>
+            <td><%=message.dbData[0].FOB_Status %></td>
+            <td><%= message.dbData[0].FOB_Attachment%></td>
           </tr>
-          <tr >
-              <td>EJA</td>
-              <td>Kumar</td>
-              <td>kl</td>
-              <td>Kumar</td>
-              <td>love</td>
-              <td>ARCMVM299</td>
-              <td>Active</td>
-              <td>Y</td>
-              <td>89726</td>
-              <td>12/12/2021</td>
-              <td>Active</td>
-              <td></td>
+          <tr>
+              <td><%=message.dbData[1].UM %></td>
+              <td><%=message.dbData[1].IT_Manager %></td>
+              <td><%=message.dbData[1].Lan_ID %></td>
+              <td><%=message.dbData[1].First_Name%></td>
+              <td><%=message.dbData[1].Last_Name %></td>
+              <td><%=message.dbData[1].VM_Name%></td>
+              <td><%=message.dbData[1].VM_Status %></td>
+              <td><%=message.dbData[1].RAD_License %></td>
+              <td><%=message.dbData[1].FOB_Id %></td>
+              <td><%=message.dbData[1].FOB_End_Date %></td>
+              <td><%=message.dbData[1].FOB_Status %></td>
+              <td><%= message.dbData[1].FOB_Attachment%></td>
             </tr>
             <tr>
-                <td>EJA</td>
-                <td>Sarfaraz</td>
-                <td>sp</td>
-                <td>Sarfaraz</td>
-                <td>Patdan</td>
-                <td>ARCMVM279</td>
-                <td>Active</td>
-                <td>Y</td>
-                <td>56789</td>
-                <td>01/11/2021</td>
-                <td>Active</td>
-                <td>{{message}}</td>
+                <td><%=message.dbData[2].UM %></td>
+                <td><%=message.dbData[2].IT_Manager %></td>
+                <td><%=message.dbData[2].Lan_ID %></td>
+                <td><%=message.dbData[2].First_Name%></td>
+                <td><%=message.dbData[2].Last_Name %></td>
+                <td><%=message.dbData[2].VM_Name%></td>
+                <td><%=message.dbData[2].VM_Status %></td>
+                <td><%=message.dbData[2].RAD_License %></td>
+                <td><%=message.dbData[2].FOB_Id %></td>
+                <td><%=message.dbData[2].FOB_End_Date %></td>
+                <td><%=message.dbData[2].FOB_Status %></td>
+                <td><%= message.dbData[2].FOB_Attachment%></td>
               </tr>
       
       </table>
 
-
  
 </body>
+<!-- <script type="text/javascript">
+function GenerateTable() {
+  //Build an array containing Customer records.
+  var customers = new Array();
+  customers.push(["Customer Id", "Name", "Country"]);
+  customers.push([1, "John Hammond", "United States"]);
+  customers.push([2, "Mudassar Khan", "India"]);
+  customers.push([3, "Suzanne Mathews", "France"]);
+  customers.push([4, "Robert Schidner", "Russia"]);
+
+  //Create a HTML Table element.
+  var table = document.createElement("TABLE");
+  table.border = "1";
+
+  //Get the count of columns.
+  var columnCount = customers[0].length;
+
+  //Add the header row.
+  var row = table.insertRow(-1);
+  for (var i = 0; i < columnCount; i++) {
+      var headerCell = document.createElement("TH");
+      headerCell.innerHTML = customers[0][i];
+      row.appendChild(headerCell);
+  }
+
+  //Add the data rows.
+  for (var i = 1; i < customers.length; i++) {
+      row = table.insertRow(-1);
+      for (var j = 0; j < columnCount; j++) {
+          var cell = row.insertCell(-1);
+          cell.innerHTML = customers[i][j];
+      }
+  }
+
+  var dvTable = document.getElementById("dvTable");
+  dvTable.innerHTML .appendChild(table);
+ // dvTable.appendChild(table);
+}
+</script> -->
 </html>

@@ -4,15 +4,29 @@ var express = require('express'),
     morgan  = require('morgan');
     
 Object.assign=require('object-assign')
-
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
+// const filename = '../openshift/templates/fobdata.json';
+// let posts = require(filename)
+
+var data=
+  {
+    id:1,
+    UM: "EJA",
+    IT_Manager: "Sarfaraz",
+    Lan_ID: "sp",
+    First_Name:"Sarfaraz",
+    Last_Name:"Pathan"
+   }
+;
+
+const fs=require('fs');
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
     mongoURLLabel = "";
-
 if (mongoURL == null) {
   var mongoHost, mongoPort, mongoDatabase, mongoPassword, mongoUser;
   // If using plane old env vars via service discovery
@@ -101,6 +115,8 @@ app.get('/pagecount', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%55",mongoUser);
+
     db.collection('counts').count(function(err, count ){
       res.send('{ pageCount: ' + count + '}');
     });
@@ -119,12 +135,24 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
+var path = require('path'),    
+filePath = path.join(__dirname, '/fobdata.json');
+
+
 app.get('/hello',function(req,res){
+
+  fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
+    if (!err) {
+      var sringifieddata=JSON.parse(resp);
+        //console.log('received data: ' + resp.dbData[0].First_Name);
+        //sringifieddata.dbData[0].First_Name
+        res.render('index.html', { message :sringifieddata});
+
+    } else {
+        console.log(err);
+    }
+    });
   
-  // Send the response body as "Hello World"
-  res.send('Hello World\n');
-  res.render(index.html, { message : "success"});
-  console.log(message);
 
  
 })
@@ -132,4 +160,7 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
+
+
+
 
