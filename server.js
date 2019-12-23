@@ -7,21 +7,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-// const filename = '../openshift/templates/fobdata.json';
-// let posts = require(filename)
 
-var data=
-  {
-    id:1,
-    UM: "EJA",
-    IT_Manager: "Sarfaraz",
-    Lan_ID: "sp",
-    First_Name:"Sarfaraz",
-    Last_Name:"Pathan"
-   }
-;
-
-const fs=require('fs');
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -134,7 +120,7 @@ app.use(function(err, req, res, next){
 initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
-
+const fs=require('fs');
 var path = require('path'),    
 filePath = path.join(__dirname, '/fobdata.json');
 
