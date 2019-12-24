@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <script src="../server.js"></script>
-
 
 <style>
 
@@ -90,7 +88,8 @@ img#close {
 position:absolute;
 right:-14px;
 top:-14px;
-cursor:pointer
+cursor:pointer;
+font-size: xx-small;
 }
 div#popupContact {
 position:absolute;
@@ -106,7 +105,9 @@ padding:10px 50px;
 border:2px solid gray;
 border-radius:10px;
 font-family:raleway;
-background-color:#fff
+background-color:#fff;
+height: 720px;
+
 }
 p {
 margin-top:30px
@@ -126,7 +127,7 @@ border-top:1px solid #ccc
 input[type=text] {
 width:82%;
 padding:10px;
-margin-top:30px;
+margin-top:8px;
 border:1px solid #ccc;
 padding-left:40px;
 font-size:16px;
@@ -241,24 +242,22 @@ float: right;
         <div id="popupContact">
         <!-- Contact Us Form -->
         <form action="/create"  method="POST">
-        <img id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.jpg" onclick ="div_hide()">
+        <img class="icon" id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" onclick ="div_hide()">
         <h2>Add Asset</h2>
         <hr>
-        <input id="name" name="UM" placeholder="UM" type="text">
-        <input id="email" name="IT_Manager" placeholder="IT_Manager" type="text">
-        <textarea id="msg" name="Lan_ID" placeholder="Lan_ID"></textarea>
-        <input id="email" name="First_Name" placeholder="First_Name" type="text">
-        <input id="email" name="Last_Name" placeholder="Last_Name" type="text">
-        <input id="email" name="VM_Name" placeholder="VM_Name" type="text">
-        <input id="email" name="VM_Status" placeholder="VM_Status" type="text">
-        <input id="email" name="RAD_License" placeholder="RAD_License" type="text">
-        <input id="email" name="FOB_Id" placeholder="FOB_Id" type="text">
-        <input id="email" name="FOB_End_Date" placeholder="FOB_End_Date" type="text">
-        <input id="email" name="FOB_Status" placeholder="FOB_Status" type="text">
-        <input id="email" name="FOB_Attachment" placeholder="FOB_Attachment" type="text">
-
-
-<button type="submit"> send</button>
+        <input  name="UM" placeholder="UM" type="text">
+        <input  name="IT_Manager" placeholder="IT_Manager" type="text">
+        <input  name="Lan_ID" placeholder="Lan_ID" type="text">
+        <input  name="First_Name" placeholder="First_Name" type="text">
+        <input  name="Last_Name" placeholder="Last_Name" type="text">
+        <input  name="VM_Name" placeholder="VM_Name" type="text">
+        <input  name="VM_Status" placeholder="VM_Status" type="text">
+        <input  name="RAD_License" placeholder="RAD_License" type="text">
+        <input  name="FOB_Id" placeholder="FOB_Id" type="text">
+        <input  name="FOB_End_Date" placeholder="FOB_End_Date" type="text">
+        <input  name="FOB_Status" placeholder="FOB_Status" type="text">
+        <input  name="FOB_Attachment" placeholder="FOB_Attachment" type="text">
+<button type="submit" id="submit"> send</button>
       </form>
         </div>
         <!-- Popup Div Ends Here -->
