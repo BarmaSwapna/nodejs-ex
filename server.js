@@ -1,11 +1,20 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    bodyParser=require('body-parser'),
+    http=require('http');
+
+var router=express.Router();
     
 Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'))
+app.use(morgan('combined'));
+
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 
 
@@ -130,17 +139,55 @@ app.get('/hello',function(req,res){
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
       var sringifieddata=JSON.parse(resp);
-       
-        res.render('load.html', { message :sringifieddata});
-
-    } else {
-        console.log(err);
+      //var message=sringifieddata;
+res.render('load.html',{message:sringifieddata})
     }
-    });
-  
-
-  
+  })
 })
+
+
+
+
+app.post('/create',function(req,res){
+
+  console.log("from methos post"+ req.body);
+
+  console.log("vm name"+ req.body.VM_Name);
+  console.log("VM status"+ req.body.VM_Status);
+  console.log("FOB id"+ req.body.FOB_ID);
+
+
+
+
+fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
+	if (err) throw err
+
+	var arrayOfObjects = JSON.parse(data)
+	arrayOfObjects.dbData.push({
+    UM:req.body.UM ,
+    IT_Manager: req.body.IT_Manager,
+    Lan_ID: req.body.Lan_ID,
+    First_Name:req.body.First_Name,
+    Last_Name:req.body.Last_Name,
+    VM_Name:req.body.VM_Name,
+    VM_Status:req.body.VM_Status,
+    RAD_License:req.body.RAD_License,
+    FOB_Id:req.body.FOB_Id,
+    FOB_End_Date:req.body.FOB_End_Date,
+    FOB_Status:req.body.FOB_Status,
+    FOB_Attachment:req.body.FOB_Attachment
+  })
+
+  console.log(arrayOfObjects);
+  fs.writeFile('./fobdata.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+    if (err) throw err
+    console.log('Done!')
+  })
+  res.render('load.html',{message:arrayOfObjects})
+
+    })
+})
+
 
 
 
@@ -148,7 +195,7 @@ app.get('/hello',function(req,res){
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
-module.exports = app ;
+module.exports = router ;
 
 
 
