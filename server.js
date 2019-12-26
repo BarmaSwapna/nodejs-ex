@@ -134,7 +134,7 @@ var path = require('path'),
 filePath = path.join(__dirname, '/fobdata.json');
 
 
-app.get('/hello',function(req,res){
+app.get('/listassets',function(req,res){
 
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
