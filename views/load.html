@@ -232,7 +232,6 @@ float: right;
           <th>FOB ID</th>
           <th>FOB End Date</th>
           <th>FOB Status</th>
-          <th>FOB Attachment</th>
         </tr>
       
       </table>
@@ -256,14 +255,13 @@ float: right;
         <input  name="FOB_Id" placeholder="FOB_Id" type="text">
         <input  name="FOB_End_Date" placeholder="FOB_End_Date" type="text">
         <input  name="FOB_Status" placeholder="FOB_Status" type="text">
-        <input  name="FOB_Attachment" placeholder="FOB_Attachment" type="text">
 <button type="submit" id="submit"> send</button>
       </form>
         </div>
         <!-- Popup Div Ends Here -->
         </div>
         <!-- Display Popup Button -->
-        <button id="popup" onclick="div_show()">Popup</button>
+        <button id="popup" onclick="div_show()">Add</button>
         </body>
 
         <script language="javascript">
@@ -282,9 +280,8 @@ float: right;
           '<th>RAD_License</th>'+
           '<th>FOB_Id</th>'+
           '<th>FOB_End_Date</th>'+
-          '<th>FOB_Status</th>'+
-          '<th>FOB_Attachment</th>'
-        +'</tr>';
+          '<th>FOB_Status</th>'
+          +'</tr>';
 
 
 
@@ -309,8 +306,7 @@ float: right;
           '<th><%=message.dbData[j].FOB_Id%></th>'+
           '<th><%=message.dbData[j].FOB_End_Date%></th>'+
           '<th><%=message.dbData[j].FOB_Status%></th>'+
-          '<th><%=message.dbData[j].FOB_Attachment%></th>'
-        +'</tr>';
+        '</tr>';
 
  <%   } %>
 

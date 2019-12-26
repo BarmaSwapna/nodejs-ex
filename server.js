@@ -150,16 +150,7 @@ res.render('load.html',{message:sringifieddata})
 
 app.post('/create',function(req,res){
 
-  console.log("from methos post"+ req.body);
-
-  console.log("vm name"+ req.body.VM_Name);
-  console.log("VM status"+ req.body.VM_Status);
-  console.log("FOB id"+ req.body.FOB_ID);
-
-
-
-
-fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
+ fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
 	if (err) throw err
 
 	var arrayOfObjects = JSON.parse(data)
@@ -174,9 +165,8 @@ fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
     RAD_License:req.body.RAD_License,
     FOB_Id:req.body.FOB_Id,
     FOB_End_Date:req.body.FOB_End_Date,
-    FOB_Status:req.body.FOB_Status,
-    FOB_Attachment:req.body.FOB_Attachment
-  })
+    FOB_Status:req.body.FOB_Status
+    })
 
   console.log(arrayOfObjects);
   fs.writeFile('./fobdata.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
