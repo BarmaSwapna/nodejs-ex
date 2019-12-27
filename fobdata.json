@@ -1,7 +1,7 @@
 {
     "dbData":[
     {
-        "id":1,
+        "AssetId":1,
         "UM": "EJA",
         "IT_Manager": "Sarfaraz",
         "Lan_ID": "sp",
@@ -15,7 +15,7 @@
         "FOB_Status":"Active"
      },
      {
-        "id":2,
+        "AssetId":2,
         "UM": "EJA",
         "IT_Manager": "Swapna",
         "Lan_ID": "sb",
@@ -29,7 +29,7 @@
         "FOB_Status":"Active"
            },
      {
-        "id":3,
+        "AssetId":3,
         "UM": "EJA",
         "IT_Manager": "Shubhi",
         "Lan_ID": "sg",

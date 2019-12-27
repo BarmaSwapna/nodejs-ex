@@ -6,6 +6,9 @@
   <title>Welcome to OpenShift</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
 
 
 <style>
@@ -28,7 +31,7 @@
     padding: 0.571em 0.857em;
     border: 1px solid black;
     background-color: #f4f4f403;
-    margin-right: -179px;
+    margin-right: -140px;
     border-collapse: separate;
   padding: 15px;
   text-align: center;
@@ -44,7 +47,7 @@
     margin-top: 35px;
     position: inherit;
     left: 15%;
-    width: 20%;
+    width: 15%;
     background: #e6efee; 
     border-radius: 10px;
 
@@ -60,7 +63,7 @@
 .messagess {
   float: right;
     margin-right: 24%;
-    margin-top: 3%;
+    margin-top: 1%;
     font-size: x-large;
 }
 .icon {
@@ -69,11 +72,31 @@
     color: blue;
 }
 
+.edit{
+
+  float: right;
+  height: 25px;
+  position:absolute;
+cursor: pointer;
+margin-top: -15px;
+    margin-left: -14px;
+
+}
+
+.delete{
+  float: right;
+  height: 25px;
+  position:absolute;
+cursor: pointer;
+margin-top: -15px;
+    margin-left: -15px;
+}
+
 @import "http://fonts.googleapis.com/css?family=Raleway";
 /*----------------------------------------------
 CSS settings for HTML div Exact Center
 ------------------------------------------------*/
-#abc {
+#abc ,#modify{
 width:100%;
 height:100%;
 opacity:.95;
@@ -106,7 +129,7 @@ border:2px solid gray;
 border-radius:10px;
 font-family:raleway;
 background-color:#fff;
-height: 720px;
+height: 830px;
 
 }
 p {
@@ -166,7 +189,8 @@ border:1px solid #FFCB00;
 padding:10px 0;
 font-size:20px;
 cursor:pointer;
-border-radius:5px
+border-radius:5px;
+margin-top: 10px;
 }
 span {
 color:red;
@@ -182,12 +206,15 @@ font-family:'Raleway',sans-serif;
 font-size:18px;
 cursor:pointer;
 float: right;
+    margin-right: 3%;
+    margin-top:-19%;
 }
 
 </style>
 
 </head>
 <body>
+
     <img _ngcontent-hyt-c1="" height="85%" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/HorizonLogo.png" height="60%" width="20%"> 
   <h4 class="icon" > <img src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/iconMember.gif"> login</h4>
   
@@ -232,6 +259,8 @@ float: right;
           <th>FOB ID</th>
           <th>FOB End Date</th>
           <th>FOB Status</th>
+          <th></th>
+          <th></th>
         </tr>
       
       </table>
@@ -243,29 +272,74 @@ float: right;
         <form action="/create"  method="POST">
         <img class="icon" id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" onclick ="div_hide()">
         <h2>Add Asset</h2>
-        <hr>
-        <input  name="UM" placeholder="UM" type="text">
-        <input  name="IT_Manager" placeholder="IT_Manager" type="text">
-        <input  name="Lan_ID" placeholder="Lan_ID" type="text">
-        <input  name="First_Name" placeholder="First_Name" type="text">
-        <input  name="Last_Name" placeholder="Last_Name" type="text">
-        <input  name="VM_Name" placeholder="VM_Name" type="text">
-        <input  name="VM_Status" placeholder="VM_Status" type="text">
-        <input  name="RAD_License" placeholder="RAD_License" type="text">
-        <input  name="FOB_Id" placeholder="FOB_Id" type="text">
-        <input  name="FOB_End_Date" placeholder="FOB_End_Date" type="text">
-        <input  name="FOB_Status" placeholder="FOB_Status" type="text">
+        <div>
+        <label>UM</label> <input  name="UM" type="text">IT_Manager
+        <input  name="IT_Manager" type="text">Lan_ID
+        <input  name="Lan_ID"  type="text">First_Name
+        <input name="First_Name" type="text">Last_Name
+        <input  name="Last_Name" type="text">VM_Name
+        <input  name="VM_Name" type="text">VM_Status
+        <input  name="VM_Status"  type="text">RAD_License
+        <input  name="RAD_License" type="text">FOB_Id
+        <input  name="FOB_Id"  type="text">FOB_End_Date
+        <input  name="FOB_End_Date" type="text">FOB_Status
+        <input  name="FOB_Status" type="text">
 <button type="submit" id="submit"> send</button>
+</div>
       </form>
         </div>
         <!-- Popup Div Ends Here -->
         </div>
         <!-- Display Popup Button -->
         <button id="popup" onclick="div_show()">Add</button>
+
+        <!--
+
+          code to update
+        -->
+
+        <div id="modify">
+          <!-- Popup Div Starts Here -->
+          <div id="popupContact">
+          <!-- Contact Us Form -->
+          <form action="/edit"  method="POST">
+          <img class="icon" id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" onclick ="div_hide()">
+          <h2>Add Asset</h2>
+          <div>
+          UM<input id="um" name="UM" type="text">IT_Manager
+          <input id="it_manager" name="IT_Manager" type="text">Lan_ID
+          <input id="lan_id" name="Lan_ID"  type="text">First_Name
+          <input id="first_name" name="First_Name" type="text">Last_Name
+          <input id="last_name" name="Last_Name" type="text">VM_Name
+          <input id="vm_name" name="VM_Name" type="text">VM_Status
+          <input id="vm_status" name="VM_Status"  type="text">RAD_License
+          <input id="rad_license" name="RAD_License" type="text">FOB_Id
+          <input id="fob_id" name="FOB_Id"  type="text">FOB_End_Date
+          <input id="fob_end_date" name="FOB_End_Date" type="text">FOB_Status
+          <input id="fob_status" name="FOB_Status" type="text">
+  <button type="submit" id="submit"> update</button>
+  </div>
+        </form>
+          </div>
+          <!-- Popup Div Ends Here -->
+          </div>
+          <!-- Display Popup Button -->
+
+
+<!--update code endss-->
+
+
+
+
+
+
+
+        
         </body>
 
-        <script language="javascript">
+        <script >
          window.onload =  function addRow(tableID) {
+          div_hide();
       
   
     var x=document.getElementById('myTable');
@@ -280,7 +354,8 @@ float: right;
           '<th>RAD_License</th>'+
           '<th>FOB_Id</th>'+
           '<th>FOB_End_Date</th>'+
-          '<th>FOB_Status</th>'
+          '<th>FOB_Status</th>'+
+          '<th>  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp  </th>'
           +'</tr>';
 
 
@@ -294,7 +369,8 @@ float: right;
   console.log("change J value based on I"+'<%= j=i%>');
 
       x.innerHTML=x.innerHTML+
-      '<tr>'+
+      '<form action=/listassets  method=GET'+
+      '<tr  >'+
          '<td><%=message.dbData[j].UM%></td>'+
           '<td><%=message.dbData[j].IT_Manager%></td>'+
           '<td><%=message.dbData[j].Lan_ID%></td>'+
@@ -306,7 +382,12 @@ float: right;
           '<td><%=message.dbData[j].FOB_Id%></td>'+
           '<td><%=message.dbData[j].FOB_End_Date%></td>'+
           '<td><%=message.dbData[j].FOB_Status%></td>'+
-        '</tr>';
+          ' <td> <img class="edit" id="edit+<%=j%>" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/editIcon.png" type="button" onclick="edit_me(id)"></td>'
+          + ' <td> <img class="delete" id="delete+<%=j%>" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" type="button" onclick="delete_me(id)"></td>'
+          +'</form>'
+       + '</tr>'
+      
+    ;
 
  <%   } %>
 
@@ -316,18 +397,10 @@ x.innerHTML=x.innerHTML+'</table>';
           
         
           </script>
+ 
 
 <script>
-  function check_empty() {
-
-    if (document.getElementById('name').value == "" || document.getElementById('email').value == "" || document.getElementById('msg').value == "") {
-    alert("Fill All Fields !");
-    } else {
-    document.getElementById('form');
-    console.log(document.getElementById('name').value);
-    alert("Form Submitted Successfully...");
-    }
-    }
+ 
     //Function To Display Popup
     function div_show() {
     document.getElementById('abc').style.display = "block";
@@ -335,6 +408,57 @@ x.innerHTML=x.innerHTML+'</table>';
     //Function to Hide Popup
     function div_hide(){
     document.getElementById('abc').style.display = "none";
-    }</script>
+    document.getElementById('modify').style.display="none";
+    }
+    
+function delete_me(id){
+  $.post('remove',{path:id}, function(response) {
+
+
+    location.reload(true); 
+    
+
+    //setInterval('autoRefresh_div()', 5000); 
+
+  })
+}
+
+function edit_me(id){    
+ 
+            // run an AJAX get request to the route you setup above...
+            // respect the cross-domain policy by using the same domain
+            // you used to access your index.html file!
+            $.post('assetid',{path:id}, function(list) {
+
+              var response=JSON.stringify(list.message[0]);
+
+              document.getElementById('modify').style.display = "block";
+              document.getElementById('um').value=list.message[0].UM;
+              document.getElementById('it_manager').value=list.message[0].IT_Manager;
+              document.getElementById('lan_id').value=list.message[0].Lan_ID;
+              document.getElementById('first_name').value=list.message[0].First_Name;
+              document.getElementById('last_name').value=list.message[0].Last_Name;
+              document.getElementById('vm_name').value=list.message[0].VM_Name;
+              document.getElementById('vm_status').value=list.message[0].VM_Status;
+              document.getElementById('fob_id').value=list.message[0].FOB_Id;
+              document.getElementById('fob_status').value=list.message[0].FOB_Status;
+              document.getElementById('fob_end_date').value=list.message[0].FOB_End_Date;
+              document.getElementById('rad_license').value=list.message[0].RAD_License;
+              
+
+
+            });
+
+        
+  }
+
+
+
+
+
+    
+    </script>
+
+   
 
 </html>

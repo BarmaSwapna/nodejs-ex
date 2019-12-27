@@ -1,4 +1,5 @@
 //  OpenShift sample Node application
+
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan'),
@@ -6,12 +7,17 @@ var express = require('express'),
     http=require('http');
 
 var router=express.Router();
+
     
 Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
+app.set('view engine' , 'ejs');
 
 
+
+// <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+//   </script>
 app.use(bodyParser.urlencoded({extended: true}));
 
 
@@ -135,7 +141,7 @@ filePath = path.join(__dirname, '/fobdata.json');
 
 
 app.get('/listassets',function(req,res){
-
+console.log("entered ListAssetsss")
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
       var sringifieddata=JSON.parse(resp);
@@ -153,8 +159,40 @@ app.post('/create',function(req,res){
  fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
 	if (err) throw err
 
-	var arrayOfObjects = JSON.parse(data)
+  var arrayOfObjects = JSON.parse(data);
+  //code to get max value of id from jsonfile
+var assetIds=[];
+var lanIds=[];
+var vmStatus="false";
+var errorMessage="LanId exists";
+
+for(var i=0;i<arrayOfObjects.dbData.length;i++){
+    assetIds.push(arrayOfObjects.dbData[i].AssetId);
+    lanIds.push(arrayOfObjects.dbData[i].Lan_ID);
+  }
+
+  if(!lanIds.includes(req.body.Lan_ID)){
+    for(var i=0;i<arrayOfObjects.dbData.length;i++){
+    if(req.body.VM_Name!=arrayOfObjects.dbData[i].VM_Name){
+
+        vmStatus="true";
+      }
+     else if(req.body.VM_Name==arrayOfObjects.dbData[i].VM_Name &&
+       (!req.body.VM_Status==arrayOfObjects.dbData[i].VM_Status))
+       {
+        console.log("vm are same but status is diff"+vmStatus);
+        vmStatus="true";
+
+       }else{
+        errorMessage="VM is not Avilable";
+       }
+    }  
+
+  }
+//code ends here 
+if(vmStatus=="true" ){
 	arrayOfObjects.dbData.push({
+    AssetId:Math.max.apply(Math, assetIds)+1,
     UM:req.body.UM ,
     IT_Manager: req.body.IT_Manager,
     Lan_ID: req.body.Lan_ID,
@@ -168,19 +206,137 @@ app.post('/create',function(req,res){
     FOB_Status:req.body.FOB_Status
     })
 
-  console.log(arrayOfObjects);
   fs.writeFile('./fobdata.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
     if (err) throw err
     console.log('Done!')
   })
   res.render('load.html',{message:arrayOfObjects})
+}else{
+  res.send({message:errorMessage});
+}
+    });
+});
 
+  //update method
+app.post('/edit',function(req,res){
+
+  fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
+    if (err) throw err
+  
+    var arrayOfObjects = JSON.parse(data);
+    var modifiedObjects = JSON.parse(data);
+    //code to get max value of id from jsonfile
+
+  var IdStatus="false";
+  var errorMessage="LanId exists";
+  var updatAssetId;
+  
+  for(var i=0;i<arrayOfObjects.dbData.length;i++){
+    if(req.body.Lan_ID==arrayOfObjects.dbData[i].Lan_ID){
+      updatAssetId= parseInt(arrayOfObjects.dbData[i].AssetId)-1;
+      IdStatus="true";
+    }else{
+      errorMessage="LanId doesnot Exists";
+    }
+    }
+   
+
+  //code ends here 
+  if(IdStatus=="true" ){
+    arrayOfObjects.dbData[updatAssetId].First_Name=req.body.First_Name;
+    arrayOfObjects.dbData[updatAssetId].Last_Name=req.body.Last_Name;
+    arrayOfObjects.dbData[updatAssetId].VM_Status=req.body.VM_Status;
+    arrayOfObjects.dbData[updatAssetId].FOB_Status=req.body.FOB_Status;
+    arrayOfObjects.dbData[updatAssetId].FOB_End_Date=req.body.FOB_End_Date;
+    arrayOfObjects.dbData[updatAssetId].RAD_License=req.body.RAD_License;
+  
+    fs.writeFile('./fobdata.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+      if (err) throw err
+      console.log('Done!')
     })
-})
+    res.render('load.html',{message:arrayOfObjects})
+  }else{
+    res.send({message:errorMessage});
+  }
+      })
+ })
 
 
+ app.post('/assetid',function(req,res){
+  var idToBeEdited=req.body.path.split("+")[1];
+  fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
+    if (!err) {
+      var arrayOfObjects=JSON.parse(resp);
 
+      var assetIds=[];
+      for(var i=0;i<arrayOfObjects.dbData.length;i++){
+        if(arrayOfObjects.dbData[i].AssetId==parseInt(idToBeEdited)+1){
+        assetIds.push(arrayOfObjects.dbData[i]);
+        }
+      }
 
+    res.send({message:assetIds})
+    }
+  })
+  })
+
+ app.post('/remove',function(req,res){
+  var idToBeDeleted=req.body.path.split("+")[1];
+console.log("id to be removed::"+idToBeDeleted);
+
+  fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
+    if (!err) {
+      var arrayOfObjects=JSON.parse(resp);
+      var modifiedData={
+        dbData:[]
+      };
+      for(var i=0;i<arrayOfObjects.dbData.length;i++){
+        if(arrayOfObjects.dbData[i].AssetId!=parseInt(idToBeDeleted)+1){
+console.log("pushing data");
+          modifiedData.dbData.push(arrayOfObjects.dbData[i]);
+        //assetIds.push(arrayOfObjects.dbData[i]);
+        }
+      }
+      //filesync with modifiedData;
+//update AssetId's before syncing file
+var initialAssetId=1;
+console.log("initialAssetId:"+initialAssetId);
+for(var j=0;j<modifiedData.dbData.length;j++){
+modifiedData.dbData[j].AssetId=initialAssetId;
+initialAssetId=initialAssetId+1;
+console.log("updatedd initialAssetId:::::::"+initialAssetId);
+
+}
+
+      fs.writeFileSync('./fobdata.json', JSON.stringify(modifiedData), 'utf-8', function(err) {
+        
+        if (!err) {
+        console.log('Done!')
+        }
+
+        
+
+      })
+   
+    }
+    res.render('load.html',{message:modifiedData});  
+
+  })
+
+ // res.redirect('/listassets');
+
+  // fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
+  //   if (!err) {
+  //     var sringifieddata=JSON.parse(resp);
+  //     //var message=sringifieddata;
+  //     res.render('load.html',{message:sringifieddata})
+  //   }
+  // })
+
+  })
+  
+
+  
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
