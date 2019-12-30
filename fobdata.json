@@ -9,7 +9,7 @@
         "Last_Name":"Pathan",
         "VM_Name":123456,
         "VM_Status":"Active",
-        "RAD_License":"Y",
+        "RAD_License":"Yes",
         "FOB_Id":1234,
         "FOB_End_Date":"11/11/2019",
         "FOB_Status":"Active"
@@ -23,7 +23,7 @@
         "Last_Name":"Barma",
         "VM_Name":78688,
         "VM_Status":"Active",
-        "RAD_License":"Y",
+        "RAD_License":"Yes",
         "FOB_Id":5672,
         "FOB_End_Date":"10/25/2020",
         "FOB_Status":"Active"
@@ -37,7 +37,7 @@
         "Last_Name":"Garg",
         "VM_Name":9876,
         "VM_Status":"Active",
-        "RAD_License":"Y",
+        "RAD_License":"Yes",
         "FOB_Id":4563,
         "FOB_End_Date":"09/12/2020",
         "FOB_Status":"Active"

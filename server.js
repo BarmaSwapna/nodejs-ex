@@ -155,6 +155,8 @@ res.render('load.html',{message:sringifieddata})
 
 
 app.post('/create',function(req,res){
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7"+req.body.VM_Status);
+
 
  fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
 	if (err) throw err
