@@ -88,7 +88,7 @@ var initDb = function(callback) {
   });
 };
 
-app.get('/', function (req, res) {
+app.get('/lisassets', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
@@ -140,7 +140,7 @@ var path = require('path'),
 filePath = path.join(__dirname, '/fobdata.json');
 
 
-app.get('/listassets',function(req,res){
+app.get('/',function(req,res){
 console.log("entered ListAssetsss")
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
@@ -209,7 +209,8 @@ if(vmStatus=="true" ){
     if (err) throw err
     console.log('Done!')
   })
-  res.render('load.html',{message:arrayOfObjects})
+  //res.render('load.html',{message:arrayOfObjects})
+  res.redirect('/');
 }else{
   res.send({message:errorMessage});
 }
@@ -253,11 +254,14 @@ app.post('/edit',function(req,res){
       if (err) throw err
       console.log('Done!')
     })
-    res.render('load.html',{message:arrayOfObjects})
-  }else{
-    res.send({message:errorMessage});
+    res.redirect('/');
+   // res.render('load.html',{message:arrayOfObjects})
   }
+  // else{
+  //   res.send({message:errorMessage});
+  // }
       })
+      
  })
 
 
@@ -313,7 +317,8 @@ initialAssetId=initialAssetId+1;
       })
    
     }
-    res.render('load.html',{message:modifiedData});  
+   // res.render('load.html',{message:modifiedData});  
+   res.redirect('/');
 
   })
 
