@@ -36,6 +36,7 @@
   padding: 15px;
   text-align: center;
   outline: black;
+  overflow-y: scroll;
   }
   /* td{
       border: 2px solid black;
@@ -60,6 +61,7 @@
  tr,td {
  line-height: 30px;
  }
+
 .messagess {
   float: right;
     margin-right: 24%;
@@ -91,7 +93,12 @@ cursor: pointer;
 margin-top: -14px;
     margin-left: -15px;
 }
+.lfblock{  
+    margin-top: 2px;
+    margin-right: 17px;
+    margin-left: 45px;
 
+}
 @import "http://fonts.googleapis.com/css?family=Raleway";
 /*----------------------------------------------
 CSS settings for HTML div Exact Center
@@ -109,10 +116,10 @@ overflow:auto
 }
 img#close {
 position:absolute;
-right:-14px;
-top:-14px;
+right:-8px;
+top:-11px;
 cursor:pointer;
-height: 3%;
+height: 4%;
 }
 div#popupContact {
 position:absolute;
@@ -122,14 +129,16 @@ margin-left:-202px;
 font-family:'Raleway',sans-serif
 }
 form {
-max-width:300px;
-min-width:250px;
+/* max-width:300px;
+min-width:250px; */
 padding:10px 50px;
 border:2px solid gray;
 border-radius:10px;
 font-family:raleway;
 background-color:#fff;
-height: 830px;
+height: 427px;
+width: 692px;
+margin-left: -162px;
 
 }
 p {
@@ -148,13 +157,15 @@ border:0;
 border-top:1px solid #ccc
 }
 input[type=text] {
-width:82%;
-padding:10px;
-margin-top:8px;
+/* width:82%; */
+padding:3px;
+margin-top:1px;
 border:1px solid #ccc;
 padding-left:40px;
 font-size:16px;
-font-family:raleway
+font-family:raleway;
+margin-bottom: 19px;
+
 }
 #name {
 background-repeat:no-repeat;
@@ -180,7 +191,7 @@ margin-bottom:30px
 }
 #submit {
 text-decoration:none;
-width:100%;
+width:30%;
 text-align:center;
 display:block;
 background-color:#FFBC00;
@@ -191,6 +202,7 @@ font-size:20px;
 cursor:pointer;
 border-radius:5px;
 margin-top: 10px;
+margin-right:218px;
 }
 span {
 color:red;
@@ -206,7 +218,7 @@ font-family:'Raleway',sans-serif;
 font-size:18px;
 cursor:pointer;
 float: right;
-    margin-top:1%;
+    margin-top:5%;
 }
 
 </style>
@@ -215,7 +227,7 @@ float: right;
 <body>
 
     <img _ngcontent-hyt-c1="" height="85%" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/HorizonLogo.png" height="60%" width="20%"> 
-  <h4 class="icon" > <img src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/iconMember.gif"> login</h4>
+  <h4 class="icon" > <img src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/iconMember.gif"> Swapna Barma</h4>
   
   
   <div class="messagess">Welcome to Horizon Asset Management</div>
@@ -245,7 +257,7 @@ float: right;
     </table>
    
     
-    <table class="right-half" id="myTable" >
+    <table class="right-half"  id="myTable" >
         <tr>
           <th>UM</th>
           <th>IT Manager</th>
@@ -266,24 +278,31 @@ float: right;
 
       <div id="abc">
         <!-- Popup Div Starts Here -->
-        <div id="popupContact">
+        <div id="popupContact" class="modal-body">
         <!-- Contact Us Form -->
         <form action="/create"  method="POST">
         <img class="icon" id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" onclick ="div_hide()">
         <h2>Add Asset</h2>
-        <div>
-        <label>UM</label> <input  name="UM" type="text">IT_Manager
-        <input  name="IT_Manager" type="text">Lan_ID
-        <input  name="Lan_ID"  type="text">First_Name
-        <input name="First_Name" type="text">Last_Name
-        <input  name="Last_Name" type="text">VM_Name
-        <input  name="VM_Name" type="text">VM_Status
-        <input  name="VM_Status"  type="text">RAD_License
-        <input  name="RAD_License" type="text">FOB_Id
-        <input  name="FOB_Id"  type="text">FOB_End_Date
-        <input  name="FOB_End_Date" type="text">FOB_Status
-        <input  name="FOB_Status" type="text">
-<button type="submit" id="submit"> send</button>
+        <div style="padding-top: 22px;" class="row">
+
+       <div class="col-md-6"> 
+         <label style="padding: 24px;" >UM</label> <input  name="UM" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+       <label style="padding: 12px;">IT_Manager</label><input name="IT_Manager" type="text"> </div> 
+       <div class="col-md-6">
+        <label style="padding: 12px;">Lan_ID</label> <input name="Lan_ID"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+        <label style="padding: 12px;">First_Name</label> <input name="First_Name" type="text"></div>
+        <div class="col-md-6">
+       <label style="padding: 1px;">Last_Name</label> <input   name="Last_Name" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+       <label style="padding: 12px;">VM_Name</label> <input  name="VM_Name" type="text"></div>
+       <div class="col-md-6">
+       <label style="padding: 2px;">VM_Status</label> <input   name="VM_Status"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+       <label style="padding: 3px;">RAD_License</label> <input name="RAD_License" type="text"></div>
+       <div class="col-md-6">
+       <label style="padding: 12px;">FOB_Id</label> <input  name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+       <label >FOB_End_Date</label> <input  name="FOB_End_Date" type="text"></div>
+       <div class="col-md-6">
+       <label >FOB_Status</label> <input  name="FOB_Status" type="text"></div>
+<button type="submit" id="submit"> save</button>
 </div>
       </form>
         </div>
@@ -304,18 +323,29 @@ float: right;
           <form action="/edit"  method="POST">
           <img class="icon" id="close" src="https://raw.githubusercontent.com/BarmaSwapna/nodejs-ex/master/closeicon.png" onclick ="div_hide()">
           <h2>Add Asset</h2>
-          <div>
-          UM<input id="um" name="UM" type="text">IT_Manager
-          <input id="it_manager" name="IT_Manager" type="text">Lan_ID
-          <input id="lan_id" name="Lan_ID"  type="text">First_Name
-          <input id="first_name" name="First_Name" type="text">Last_Name
-          <input id="last_name" name="Last_Name" type="text">VM_Name
-          <input id="vm_name" name="VM_Name" type="text">VM_Status
-          <input id="vm_status" name="VM_Status"  type="text">RAD_License
-          <input id="rad_license" name="RAD_License" type="text">FOB_Id
-          <input id="fob_id" name="FOB_Id"  type="text">FOB_End_Date
-          <input id="fob_end_date" name="FOB_End_Date" type="text">FOB_Status
-          <input id="fob_status" name="FOB_Status" type="text">
+
+          <div style="padding-top: 22px;" class="row">
+            <div class="col-md-6"> 
+              <label style="padding: 24px;" >UM</label><input id="um" name="UM" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+              <label style="padding: 12px;">IT_Manager</label><input id="it_manager" name="IT_Manager" type="text"></div>
+              <div class="col-md-6">
+               <label style="padding: 12px;">Lan_ID</label> <input id="lan_id" name="Lan_ID"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+               <label style="padding: 12px;">First_Name</label><input id="first_name" name="First_Name" type="text"></div>
+               <div class="col-md-6">
+                <label style="padding: 1px;">Last_Name</label><input id="last_name" name="Last_Name" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <label style="padding: 12px;">VM_Name</label> <input id="vm_name" name="VM_Name" type="text"></div>
+                <div class="col-md-6">
+                  <label style="padding: 2px;">VM_Status</label> <input id="vm_status" name="VM_Status"  type="text">&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label style="padding: 3px;">RAD_License</label>  <input id="rad_license" name="RAD_License" type="text"></div>
+                  
+                  
+                  <div class="col-md-6">
+                    <label style="padding: 12px;">FOB_Id</label> <input id="fob_id" name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <label >FOB_End_Date</label><input id="fob_end_date" name="FOB_End_Date" type="text"></div>
+                    <div class="col-md-6">
+                      <label >FOB_Status</label>
+          <input id="fob_status" name="FOB_Status" type="text"></div>
   <button type="submit" id="submit"> update</button>
   </div>
         </form>
@@ -342,7 +372,7 @@ float: right;
       
   
     var x=document.getElementById('myTable');
-    x.innerHTML='<table > <tr>'+
+    x.innerHTML='<table> <tr>'+
          '<th>UM</th>'+
           '<th>IT_Manager</th>'+
           '<th>Lan_ID</th>'+
@@ -369,7 +399,7 @@ float: right;
 
       x.innerHTML=x.innerHTML+
       '<form action=/listassets  method=GET'+
-      '<tr  >'+
+      '<tr >'+
          '<td><%=message.dbData[j].UM%></td>'+
           '<td><%=message.dbData[j].IT_Manager%></td>'+
           '<td><%=message.dbData[j].Lan_ID%></td>'+

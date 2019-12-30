@@ -180,7 +180,6 @@ for(var i=0;i<arrayOfObjects.dbData.length;i++){
      else if(req.body.VM_Name==arrayOfObjects.dbData[i].VM_Name &&
        (!req.body.VM_Status==arrayOfObjects.dbData[i].VM_Status))
        {
-        console.log("vm are same but status is diff"+vmStatus);
         vmStatus="true";
 
        }else{
@@ -274,7 +273,6 @@ app.post('/edit',function(req,res){
         assetIds.push(arrayOfObjects.dbData[i]);
         }
       }
-
     res.send({message:assetIds})
     }
   })
@@ -292,7 +290,6 @@ console.log("id to be removed::"+idToBeDeleted);
       };
       for(var i=0;i<arrayOfObjects.dbData.length;i++){
         if(arrayOfObjects.dbData[i].AssetId!=parseInt(idToBeDeleted)+1){
-console.log("pushing data");
           modifiedData.dbData.push(arrayOfObjects.dbData[i]);
         //assetIds.push(arrayOfObjects.dbData[i]);
         }
@@ -300,14 +297,11 @@ console.log("pushing data");
       //filesync with modifiedData;
 //update AssetId's before syncing file
 var initialAssetId=1;
-console.log("initialAssetId:"+initialAssetId);
 for(var j=0;j<modifiedData.dbData.length;j++){
 modifiedData.dbData[j].AssetId=initialAssetId;
 initialAssetId=initialAssetId+1;
-console.log("updatedd initialAssetId:::::::"+initialAssetId);
 
 }
-
       fs.writeFileSync('./fobdata.json', JSON.stringify(modifiedData), 'utf-8', function(err) {
         
         if (!err) {
