@@ -306,7 +306,7 @@ float: right;
         <option value="No">No</option> </select></div>
        <div class="col-md-6">
        <label style="padding: 12px;">FOB_Id</label> <input  name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
-       <label >FOB_End_Date</label> <input  name="FOB_End_Date" type="text"></div>
+       <label >FOB_End_Date</label> <input id="fob_edate" name="FOB_End_Date" readonly=true></div>
        <div class="col-md-6">
        <label >FOB_Status</label>  <select  name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
         <option value="InActive">InActive</option> </select></div>
@@ -354,7 +354,7 @@ float: right;
            <option value="No">No</option> </select></div>
           <div class="col-md-6">
           <label style="padding: 12px;">FOB_Id</label> <input id="fob_id" name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
-          <label >FOB_End_Date</label> <input id="fob_end_date"  name="FOB_End_Date" type="text"></div>
+          <label >FOB_End_Date</label> <input id="fob_end_date"  name="FOB_End_Date" readonly=true></div>
           <div class="col-md-6">
           <label >FOB_Status</label>  <select id="fob_status" name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
            <option value="InActive">InActive</option> </select></div>
@@ -376,9 +376,15 @@ float: right;
         
         </body>
 
+
+       
+
+
         <script >
          window.onload =  function addRow(tableID) {
           div_hide();
+          document.getElementById('fob_edate').value=calculateDate();
+
       
   
     var x=document.getElementById('myTable');
@@ -459,6 +465,31 @@ function delete_me(id){
 
   });
 }
+
+function calculateDate() {
+   
+   var today = new Date();
+   var dd = today.getDate();
+   
+   var mm = today.getMonth()+6; 
+   var yyyy = today.getFullYear()+1;
+   if(dd<10) 
+   {
+       dd='0'+dd;
+   } 
+   if(mm<10) 
+   {
+       mm='0'+mm;
+   } 
+   if(mm>12){
+     mm=mm-12;
+     mm='0'+mm;
+   }
+   today = mm+'/'+dd+'/'+yyyy;
+   console.log(today);
+   
+   return today;
+    }
 
 
 function edit_me(id){    

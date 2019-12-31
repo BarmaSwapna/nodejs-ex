@@ -155,7 +155,6 @@ res.render('load.html',{message:sringifieddata})
 
 
 app.post('/create',function(req,res){
-  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7"+req.body.VM_Status);
 
 
  fs.readFile('./fobdata.json', 'utf-8', function(err, data) {
@@ -249,7 +248,7 @@ app.post('/edit',function(req,res){
     arrayOfObjects.dbData[updatAssetId].Last_Name=req.body.Last_Name;
     arrayOfObjects.dbData[updatAssetId].VM_Status=req.body.VM_Status;
     arrayOfObjects.dbData[updatAssetId].FOB_Status=req.body.FOB_Status;
-    arrayOfObjects.dbData[updatAssetId].FOB_End_Date=req.body.FOB_End_Date;
+    //arrayOfObjects.dbData[updatAssetId].FOB_End_Date=req.body.FOB_End_Date;
     arrayOfObjects.dbData[updatAssetId].RAD_License=req.body.RAD_License;
   
     fs.writeFile('./fobdata.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
@@ -265,6 +264,27 @@ app.post('/edit',function(req,res){
       })
       
  })
+
+ function calculateDate() {
+   
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+6; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = mm+'/'+dd+'/'+yyyy;
+console.log(today);
+
+return today;
+ }
 
 
  app.post('/assetid',function(req,res){

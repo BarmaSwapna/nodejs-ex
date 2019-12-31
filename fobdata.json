@@ -1,48 +1,42 @@
 {
-    "dbData":[
-    {
-        "AssetId":1,
-        "UM": "EJA",
-        "IT_Manager": "Sarfaraz",
-        "Lan_ID": "sp",
-        "First_Name":"Sarfaraz",
-        "Last_Name":"Pathan",
-        "VM_Name":123456,
-        "VM_Status":"Active",
-        "RAD_License":"Yes",
-        "FOB_Id":1234,
-        "FOB_End_Date":"11/11/2019",
-        "FOB_Status":"Active"
-     },
-     {
-        "AssetId":2,
-        "UM": "EJA",
-        "IT_Manager": "Swapna",
-        "Lan_ID": "sb",
-        "First_Name":"Swapna",
-        "Last_Name":"Barma",
-        "VM_Name":78688,
-        "VM_Status":"Active",
-        "RAD_License":"Yes",
-        "FOB_Id":5672,
-        "FOB_End_Date":"10/25/2020",
-        "FOB_Status":"Active"
-           },
-     {
-        "AssetId":3,
-        "UM": "EJA",
-        "IT_Manager": "Shubhi",
-        "Lan_ID": "sg",
-        "First_Name":"Shubhi",
-        "Last_Name":"Garg",
-        "VM_Name":9876,
-        "VM_Status":"Active",
-        "RAD_License":"Yes",
-        "FOB_Id":4563,
-        "FOB_End_Date":"09/12/2020",
-        "FOB_Status":"Active"
-        
-     }
-]
-    
+	"dbData": [{
+		"AssetId": 1,
+		"UM": "EJA",
+		"IT_Manager": "Keyur Patel",
+		"Lan_ID": "lkumar",
+		"First_Name": "Kumar",
+		"Last_Name": "Love",
+		"VM_Name": "VDIPADG011",
+		"VM_Status": "Active",
+		"RAD_License": "Yes",
+		"FOB_Id": 790452,
+		"FOB_End_Date": "09/04/2020",
+		"FOB_Status": "Active"
+	}, {
+		"AssetId": 2,
+		"UM": "EJA",
+		"IT_Manager": "Keyur Patel",
+		"Lan_ID": "spathan",
+		"First_Name": "Sarfaraz",
+		"Last_Name": "Pathan",
+		"VM_Name": "VDIPADG003",
+		"VM_Status": "Active",
+		"RAD_License": "Yes",
+		"FOB_Id": "404623",
+		"FOB_End_Date": "06/31/2020",
+		"FOB_Status": "Active"
+	}, {
+		"AssetId": 3,
+		"UM": "EJA",
+		"IT_Manager": "Alfredo Franscico",
+		"Lan_ID": "sbarma",
+		"First_Name": "Swapna",
+		"Last_Name": "Barma",
+		"VM_Name": "ARCMOM297",
+		"VM_Status": "Active",
+		"RAD_License": "Yes",
+		"FOB_Id": "456789",
+		"FOB_End_Date": "05/31/2020",
+		"FOB_Status": "Active"
+	}]
 }
