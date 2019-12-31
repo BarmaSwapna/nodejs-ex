@@ -141,7 +141,6 @@ filePath = path.join(__dirname, '/fobdata.json');
 
 
 app.get('/',function(req,res){
-console.log("entered ListAssetsss")
   fs.readFile(filePath, {encoding: 'utf-8'}, function(err,resp){
     if (!err) {
       var sringifieddata=JSON.parse(resp);
@@ -258,9 +257,9 @@ app.post('/edit',function(req,res){
     res.redirect('/');
    // res.render('load.html',{message:arrayOfObjects})
   }
-  // else{
-  //   res.send({message:errorMessage});
-  // }
+  else{
+    res.send({message:errorMessage});
+  }
       })
       
  })
