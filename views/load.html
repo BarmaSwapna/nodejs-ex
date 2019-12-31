@@ -197,7 +197,7 @@ display:block;
 background-color:#FFBC00;
 color:#fff;
 border:1px solid #FFCB00;
-padding:10px 0;
+padding:3px 0;
 font-size:20px;
 cursor:pointer;
 border-radius:5px;
@@ -244,7 +244,7 @@ float: right;
             <th>Asset VM Details</th>
           </tr>
           <tr class="td1">
-              <th>UM Details</th>
+              <th>Assets Availability</th>
             </tr>
             <tr class="td1">
                 <th>Resource Assets</th>
@@ -287,11 +287,11 @@ float: right;
 
        <div class="col-md-6"> 
          <label style="padding: 24px;">UM</label>
-         <select  name="UM" style="border: 1px solid #ccc;"> <option value="EJA">EJA</option>
+         <select  name="UM" style="border: 1px solid #ccc;width: 239px; height: 25px;"> <option value="EJA">EJA</option>
           <option value="MOM">MOM</option>
           <option value="Broker Portal">Broker Portal</option> </select>
           &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-       <label style="padding: 92px;margin-right: -64px;">IT_Manager</label><input name="IT_Manager" type="text"> </div> 
+       <label style="padding: 22px;margin-left: -61px;">IT_Manager</label><input name="IT_Manager" type="text"> </div> 
        <div class="col-md-6">
         <label style="padding: 12px;">Lan_ID</label> <input name="Lan_ID"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
         <label style="padding: 12px;">First_Name</label> <input name="First_Name" type="text"></div>
@@ -299,16 +299,15 @@ float: right;
        <label style="padding: 1px;">Last_Name</label> <input   name="Last_Name" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
        <label style="padding: 12px;">VM_Name</label> <input  name="VM_Name" type="text"></div>
        <div class="col-md-6">
-       <label style="padding: 2px;">VM_Status</label>  <select name="VM_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
+       <label style="padding: 2px;">VM_Status</label>  <select name="VM_Status" style="margin-bottom: 20px;border: 1px solid #ccc;width: 237px;height: 25px;"> <option value="Active">Active</option>
         <option value="InActive">InActive</option> </select> &nbsp;&nbsp;&nbsp;&nbsp;
-       <label style="padding: 3px;margin-left: 167px;">RAD_License</label> 
-       <select  name="RAD_License" style="margin-bottom: 20px;border: 1px solid #ccc;" > <option value="Yes">Yes</option>
+       <label>RAD_License</label> 
+       <select  name="RAD_License" style="margin-left: 7px;border: 1px solid #ccc;width: 239px;height: 25px;" > <option value="Yes">Yes</option>
         <option value="No">No</option> </select></div>
        <div class="col-md-6">
        <label style="padding: 12px;">FOB_Id</label> <input  name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
-       <label >FOB_End_Date</label> <input id="fob_edate" name="FOB_End_Date" readonly=true></div>
-       <div class="col-md-6">
-       <label >FOB_Status</label>  <select  name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
+      
+       <label style="padding: 10px;">FOB_Status</label>  <select  name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;width: 239px;height: 25px;"> <option value="Active">Active</option>
         <option value="InActive">InActive</option> </select></div>
 <button type="submit" id="submit"> save</button>
 </div>
@@ -335,11 +334,11 @@ float: right;
           <div  style="padding-top: 22px;" class="row"> 
             <div class="col-md-6">
             <label style="padding: 24px;">UM</label>
-            <select  id="um" name="UM" style="border: 1px solid #ccc;"> <option value="EJA">EJA</option>
+            <select  id="um" name="UM" style="border: 1px solid #ccc;width: 239px; height: 25px;"> <option value="EJA">EJA</option>
              <option value="MOM">MOM</option>
              <option value="Broker Portal">Broker Portal</option> </select>
              &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-          <label style="padding: 92px;margin-right: -64px;">IT_Manager</label><input id="it_manager" name="IT_Manager" type="text"> </div> 
+          <label style="padding: 22px;margin-left: -61px;">IT_Manager</label><input id="it_manager" name="IT_Manager" type="text"> </div> 
           <div class="col-md-6">
            <label style="padding: 12px;">Lan_ID</label> <input id="lan_id" name="Lan_ID"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
            <label style="padding: 12px;">First_Name</label> <input  id="first_name" name="First_Name" type="text"></div>
@@ -347,16 +346,15 @@ float: right;
           <label style="padding: 1px;">Last_Name</label> <input  id="last_name" name="Last_Name" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
           <label style="padding: 12px;">VM_Name</label> <input id="vm_name" name="VM_Name" type="text"></div>
           <div class="col-md-6">
-          <label style="padding: 2px;">VM_Status</label>  <select id="vm_status" name="VM_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
+          <label style="padding: 2px;">VM_Status</label>  <select id="vm_status" name="VM_Status" style="margin-bottom: 20px;border: 1px solid #ccc;width: 237px;height: 25px;"> <option value="Active">Active</option>
            <option value="InActive">InActive</option> </select> &nbsp;&nbsp;&nbsp;&nbsp;
-          <label style="padding: 3px;margin-left: 167px;">RAD_License</label> 
-          <select  name="RAD_License" id="rad_license" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Yes">Yes</option>
+          <label >RAD_License</label> 
+          <select  name="RAD_License" id="rad_license" style="margin-left: 7px;border: 1px solid #ccc;width: 239px;height: 25px;" > <option value="Yes">Yes</option>
            <option value="No">No</option> </select></div>
           <div class="col-md-6">
           <label style="padding: 12px;">FOB_Id</label> <input id="fob_id" name="FOB_Id"  type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
-          <label >FOB_End_Date</label> <input id="fob_end_date"  name="FOB_End_Date" readonly=true></div>
-          <div class="col-md-6">
-          <label >FOB_Status</label>  <select id="fob_status" name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;"> <option value="Active">Active</option>
+         
+          <label style="padding: 10px;">FOB_Status</label>  <select id="fob_status" name="FOB_Status" style="margin-bottom: 20px;border: 1px solid #ccc;width: 239px;height: 25px;"> <option value="Active">Active</option>
            <option value="InActive">InActive</option> </select></div>
    <button type="submit" id="submit"> update</button>
    </div>
@@ -383,8 +381,6 @@ float: right;
         <script >
          window.onload =  function addRow(tableID) {
           div_hide();
-          document.getElementById('fob_edate').value=calculateDate();
-
       
   
     var x=document.getElementById('myTable');
@@ -466,30 +462,7 @@ function delete_me(id){
   });
 }
 
-function calculateDate() {
-   
-   var today = new Date();
-   var dd = today.getDate();
-   
-   var mm = today.getMonth()+6; 
-   var yyyy = today.getFullYear()+1;
-   if(dd<10) 
-   {
-       dd='0'+dd;
-   } 
-   if(mm<10) 
-   {
-       mm='0'+mm;
-   } 
-   if(mm>12){
-     mm=mm-12;
-     mm='0'+mm;
-   }
-   today = mm+'/'+dd+'/'+yyyy;
-   console.log(today);
-   
-   return today;
-    }
+
 
 
 function edit_me(id){    
@@ -511,7 +484,6 @@ function edit_me(id){
               document.getElementById('vm_status').value=list.message[0].VM_Status;
               document.getElementById('fob_id').value=list.message[0].FOB_Id;
               document.getElementById('fob_status').value=list.message[0].FOB_Status;
-              document.getElementById('fob_end_date').value=list.message[0].FOB_End_Date;
               document.getElementById('rad_license').value=list.message[0].RAD_License;
               
 

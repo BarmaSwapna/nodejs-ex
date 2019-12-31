@@ -202,7 +202,7 @@ if(vmStatus=="true" ){
     VM_Status:req.body.VM_Status,
     RAD_License:req.body.RAD_License,
     FOB_Id:req.body.FOB_Id,
-    FOB_End_Date:req.body.FOB_End_Date,
+    FOB_End_Date:calculateDate(),
     FOB_Status:req.body.FOB_Status
     })
 
@@ -264,28 +264,6 @@ app.post('/edit',function(req,res){
       })
       
  })
-
- function calculateDate() {
-   
-var today = new Date();
-var dd = today.getDate();
-
-var mm = today.getMonth()+6; 
-var yyyy = today.getFullYear();
-if(dd<10) 
-{
-    dd='0'+dd;
-} 
-if(mm<10) 
-{
-    mm='0'+mm;
-} 
-today = mm+'/'+dd+'/'+yyyy;
-console.log(today);
-
-return today;
- }
-
 
  app.post('/assetid',function(req,res){
   var idToBeEdited=req.body.path.split("+")[1];
@@ -357,7 +335,30 @@ initialAssetId=initialAssetId+1;
   })
   
 
-  
+  function calculateDate() {
+   
+    var today = new Date();
+    var dd = today.getDate();
+    
+    var mm = today.getMonth()+6; 
+    var yyyy = today.getFullYear()+1;
+    if(dd<10) 
+    {
+        dd='0'+dd;
+    } 
+    if(mm<10) 
+    {
+        mm='0'+mm;
+    } 
+    if(mm>12){
+      mm=mm-12;
+      mm='0'+mm;
+    }
+    today = mm+'/'+dd+'/'+yyyy;
+    console.log(today);
+    
+    return today;
+     }
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
